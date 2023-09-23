@@ -24,26 +24,26 @@ const clientes=[
 		dni:"35764127",
 		nombre:"pedro",
 		direcion:"",
-		compra:"21",
+		compra:[21],
 		vendedor:"1"
 	},
 	{
 		dni:"33273700",
 		nombre:"jesi",
-		compra:"1",
+		compra:[1],
 		vendedor:"1",
 	}
 ]
 
 const vendedor=[
 	{
-		id:"1",
+		id:1,
 		nombre:"pedro",
 		contraseña:"123",
 		clientes:["35764127","33273700"],
 	},
 	{
-		id:"2",
+		id:2,
 		nombre:"jesi",
 		contraseña:"123",
 		clientes:["35764127","33273700"],
@@ -53,16 +53,19 @@ const vendedor=[
 const abertura=[{
 	id:1,
 	nombre:"corrediza",
+	cantidad:0,
 	valor:125,
 },
 {
 	id:2,
 	nombre:"abrir",
+	cantidad:0,
 	valor:123,
 },
 {
 	id:3,
 	nombre:"puerta",
+	cantidad:0,
 	valor:122,
 }
 ];
@@ -89,7 +92,7 @@ const ingresoUsuario=()=>{
 }
 const agregarVendedor=()=>{
 	const newVendedor={
-		id:"",
+		id:-1,
 		nombre:"",
 		contraseña:"",
 		clientes:[],
@@ -97,17 +100,42 @@ const agregarVendedor=()=>{
 	newVendedor.nombre=prompt(`ingrese un nombre`);
 	newVendedor.contraseña=prompt("ingrese una contraseña")
 	newVendedor.id=vendedor.length+1;
-	newVendedor.id=Integer.toString(numVendedor.id)
 	vendedor.push(newVendedor);
 	console.table(vendedor);
 }
 
+const venta=()=>{
+	let tipoVenta;
+	do {
+		tipoVenta=prompt("A-. Ya es un cliente.\nB-. Cliente nuevo.\nS-.Salir");
+		tipoVenta=tipoVenta.toUpperCase()
+		if (tipoVenta==='S') {
+			console.log(`buena suerte`)
+		} else {
+			if(tipoVenta==="A"){
+				let dniBuscado;
+
+				/* agregar compra con id de cliente ya creado */
+				console.table(`${clientes}`)
+				dniBuscado=prompt(`ingrese el dni del cliente`);
+				
+			}else{
+				/* venta a nuevo cliente */
+				if (tipoVenta==="B")
+				
+			}
+		}
+	} while (tipoVenta!==`S`);
+}
+
+
+const cancelarVenta=()=>{
+
+}
 /* 
-venta()
-cancelarVenta()
 modificarVenta() */
 
-/* ingreso de datos */
+/* ingreso de cantidades al stock */
 const ingreso= (condicion,cantidad)=>{
 	switch (condicion) {
 		case "A":
@@ -122,7 +150,7 @@ const ingreso= (condicion,cantidad)=>{
 	};
 }
 
-/* menu de ingreso */
+/* menu de ingreso  de stock*/
 const entrada = ()=>{	
 	let dato="";
 	let cantidad=0;
@@ -149,7 +177,7 @@ const total=()=>{
 /* ingreso valido */
 let usuario=""
 do {
-	usuario=prompt(`desea entrar como administrador? \n Y/N`).toUpperCase();
+	usuario=prompt(`desea entrar como vendedor? \n Y/N`).toUpperCase();
 } while (usuario!=="N" && usuario !=="Y");
 if (usuario==="Y"){ 
 	if (ingresoUsuario()){
