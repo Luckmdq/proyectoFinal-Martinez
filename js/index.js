@@ -6,7 +6,8 @@ const loginModal = document.getElementById("loginModal")
 const closeModal = document.getElementById("closeModal")
 const modalSelect = document.getElementById("usuario")
 const btnMenu = document.getElementById("ctaMenu")
-const menu = document.getElementById("navbar")
+const menu = document.getElementById("navbar");
+const formularioIngreso = document.getElementById("formLogin")
 
 
 /* TIPOS DE DATOS  */
@@ -82,7 +83,13 @@ const abertura = [{
 
 /* login de usuario */
 const login = () => {
-	return contraseña === prompt(`ingrese su contraseña`);
+	let opcion=formularioIngreso.children[1];
+	let valorSelect = parseInt(opcion.options[opcion.selectedIndex].value);
+	let pass=formularioIngreso.children[3].value;
+	let usuario=vendedor.find(e=> e.id===valorSelect);
+	loginModal.classList.toggle('hidden');
+	/* al ingresar tendria que ver los clientes y los pedidos, al no ingresar tendria que mostrar un alert por la contraseña o algo asi */
+	usuario.contraseña==pass ? console.log(`bien`) : console.log(`mal`);
 };
 
 const ingresoUsuario = () => {
@@ -215,28 +222,31 @@ const menuUsuario = () => {
 btnLogin.addEventListener("click", (ev) => {
 	loginModal.classList.toggle(`hidden`);
 })
-const showSelects=()=>{
-	vendedor.map(e=>{
-		nuevaOpcion=document.createElement(`option`);
-		nuevaOpcion.value=`${e.id}`;
-		nuevaOpcion.text=`${e.nombre}`;
+const showSelects = () => {
+	vendedor.map(e => {
+		nuevaOpcion = document.createElement(`option`);
+		nuevaOpcion.value = `${e.id}`;
+		nuevaOpcion.text = `${e.nombre}`;
 		modalSelect.appendChild(nuevaOpcion);
 	})
 }
-
 loginModal.addEventListener("click", e => {
 	switch (e.target.id.toLowerCase()) {
 		case "usuario":
-			if (modalSelect.children.length==1) {showSelects()};
+			if (modalSelect.children.length == 1) { showSelects() };
 			break;
 		case "closemodal":
 			loginModal.classList.toggle('hidden');
 			break;
 		case "ingresar":
-			loginModal.classList.toggle('hidden');
+			login();
 			break;
 		case "cancelar":
-			loginModal.classList.toggle('hidden');
+			let option = prompt(`esta por salir \n S-. Si \n N-. No`).toLowerCase();
+			console.log(option)
+			if (option == "s") {
+				loginModal.classList.toggle("hidden")
+			}
 			break;
 		case "loginmodal":
 			loginModal.classList.toggle('hidden');
@@ -245,8 +255,9 @@ loginModal.addEventListener("click", e => {
 })
 
 loginModal.addEventListener("keydown", e => {
-	if(e.key=="Enter"){
+	if (e.key == "Enter") {
 		e.preventDefault();
+		login();
 	}
 })
 
