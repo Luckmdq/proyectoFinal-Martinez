@@ -8,6 +8,7 @@ const modalSelect = document.getElementById("usuario")
 const btnMenu = document.getElementById("ctaMenu")
 const menu = document.getElementById("navbar");
 const formularioIngreso = document.getElementById("formLogin")
+const ctaCarrito=document.getElementById("btnCarrito")
 
 
 /* TIPOS DE DATOS  */
@@ -33,13 +34,13 @@ const clientes = [
 		nombre: "pedro",
 		direcion: "",
 		compra: [21],
-		vendedor: "1"
+		vendedor: 1,
 	},
 	{
 		dni: "33273700",
 		nombre: "jesi",
 		compra: [1],
-		vendedor: "1",
+		vendedor: 1,
 	}
 ]
 
@@ -89,24 +90,19 @@ const login = () => {
 	let usuario=vendedor.find(e=> e.id===valorSelect);
 	loginModal.classList.toggle('hidden');
 	/* al ingresar tendria que ver los clientes y los pedidos, al no ingresar tendria que mostrar un alert por la contraseña o algo asi */
-	usuario.contraseña==pass ? console.log(`bien`) : console.log(`mal`);
+	if(usuario.contraseña==pass) {
+		ctaCarrito.classList.toggle("hidden");
+		showClientes(valorSelect);
+		showVentas();
+		editarStock();
+	} 
 };
 
-const ingresoUsuario = () => {
-	let pass = "";
-	let idVendedor = null;
-	let intentos = 0;
-	vendedor.map(elemento => (
-		console.log(`id: ${elemento.id}. Nombre: ${elemento.nombre}`)
-	))
-	idVendedor = parseInt(prompt(`escriba su id`));
-	console.log(vendedor[idVendedor - 1].contraseña)
-	while (intentos < 3 && pass !== vendedor[idVendedor - 1].contraseña) {
-		pass = prompt(`ingrese su contraseña`).toLowerCase();
-		intentos++;
-	} return pass === vendedor[idVendedor - 1].contraseña;
-	//al tener el id de encontrado(valido en el array) solo retornaria true si lo allo si no seria false por lo tanto el ingreso del usuario se revotaria
+const showClientes=(idVendedor)=>{
+	let cliente=clientes.filter((client)=>client.vendedor== idVendedor);
+	/* cliente pose todos los clientes del vendedor seleccionado */
 }
+
 const agregarVendedor = () => {
 	const newVendedor = {
 		id: -1,
@@ -258,7 +254,7 @@ loginModal.addEventListener("keydown", e => {
 	if (e.key == "Enter") {
 		e.preventDefault();
 		login();
-	}
+	}else e.key=="Escape" && loginModal.classList.toggle("hidden")
 })
 
 btnMenu.addEventListener("click", () => {

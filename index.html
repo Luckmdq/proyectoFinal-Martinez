@@ -73,15 +73,15 @@
 				</div>
 
 				<!-- carrito cta -->
-				<button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+				<button id="btnCarrito"
 					class=" absolute top-11 left-14 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 					type="button">
 					carrito
 				</button>
 
 				<!-- carrito modal -->
-				<div id="authentication-modal" tabindex="-1" aria-hidden="true"
-					class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+				<div id=""
+				class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
 					<div class="relative w-full max-w-md max-h-full">
 						<!-- Modal content -->
 						<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -332,23 +332,20 @@
 		</article>
 		<!-- dependiendo quien ingresa se obtendria la vista(Cliente / vendedor por js pero para poder generar la vista lo hago primero estatico incluido el carrito que al ser vendedor se verian las compras a vender) todo esto mas simple con react lo se xD -->
 
-		<!-- <article id="clientes">
+		<article id="clientes">
 
 			<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 					<thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
 						<tr>
 							<th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-								Product name
+								Cliente
 							</th>
 							<th scope="col" class="px-6 py-3">
-								Color
+								Pedido
 							</th>
 							<th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-								Category
-							</th>
-							<th scope="col" class="px-6 py-3">
-								Price
+								Monto
 							</th>
 						</tr>
 					</thead>
@@ -356,7 +353,7 @@
 						<tr class="border-b border-gray-200 dark:border-gray-700">
 							<th scope="row"
 								class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-								Apple MacBook Pro 17"
+								cliente1
 							</th>
 							<td class="px-6 py-4">
 								Silver
@@ -364,68 +361,17 @@
 							<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
 								Laptop
 							</td>
-							<td class="px-6 py-4">
-								$2999
-							</td>
 						</tr>
 						<tr class="border-b border-gray-200 dark:border-gray-700">
 							<th scope="row"
 								class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-								Microsoft Surface Pro
+								cliente2
 							</th>
 							<td class="px-6 py-4">
 								White
 							</td>
 							<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
 								Laptop PC
-							</td>
-							<td class="px-6 py-4">
-								$1999
-							</td>
-						</tr>
-						<tr class="border-b border-gray-200 dark:border-gray-700">
-							<th scope="row"
-								class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-								Magic Mouse 2
-							</th>
-							<td class="px-6 py-4">
-								Black
-							</td>
-							<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
-								Accessories
-							</td>
-							<td class="px-6 py-4">
-								$99
-							</td>
-						</tr>
-						<tr class="border-b border-gray-200 dark:border-gray-700">
-							<th scope="row"
-								class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-								Google Pixel Phone
-							</th>
-							<td class="px-6 py-4">
-								Gray
-							</td>
-							<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
-								Phone
-							</td>
-							<td class="px-6 py-4">
-								$799
-							</td>
-						</tr>
-						<tr>
-							<th scope="row"
-								class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-								Apple Watch 5
-							</th>
-							<td class="px-6 py-4">
-								Red
-							</td>
-							<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
-								Wearables
-							</td>
-							<td class="px-6 py-4">
-								$999
 							</td>
 						</tr>
 					</tbody>
@@ -435,7 +381,7 @@
 
 		</article>
 
-		<article id="venta">
+		<!-- <article id="venta">
 
 			<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
