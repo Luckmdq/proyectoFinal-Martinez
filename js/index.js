@@ -156,7 +156,9 @@ const showClientes = (idVendedor) => {
 		body.insertAdjacentHTML("beforeend", nodo);
 	});
 	body.addEventListener("click", event=>{
-		console.log(event.target);
+		let id=event.target.id
+		id.includes("mod") && console.log(id.replaceAll("mod",""))
+		id.includes("del") && console.log(id.replaceAll("del",""))
 	});
 }
 
