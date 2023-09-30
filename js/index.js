@@ -8,7 +8,7 @@ const modalSelect = document.getElementById("usuario")
 const btnMenu = document.getElementById("ctaMenu")
 const menu = document.getElementById("navbar");
 const formularioIngreso = document.getElementById("formLogin")
-const ctaCarrito=document.getElementById("btnCarrito")
+const ctaCarrito = document.getElementById("btnCarrito")
 const viewClientes = document.getElementById("clientes")
 
 
@@ -85,27 +85,23 @@ const abertura = [{
 
 /* login de usuario */
 const login = () => {
-	let opcion=formularioIngreso.children[1];
+	let opcion = formularioIngreso.children[1];
 	let valorSelect = parseInt(opcion.options[opcion.selectedIndex].value);
-	let pass=formularioIngreso.children[3].value;
-	let usuario=vendedor.find(e=> e.id===valorSelect);
+	let pass = formularioIngreso.children[3].value;
+	let usuario = vendedor.find(e => e.id === valorSelect);
 	loginModal.classList.toggle('hidden');
 	/* al ingresar tendria que ver los clientes y los pedidos, al no ingresar tendria que mostrar un alert por la contraseña o algo asi */
-	if(usuario.contraseña==pass) {
-		ctaCarrito.classList.toggle("hidden");
+	if (usuario.contraseña == pass) {
+		//ctaCarrito.classList.toggle("hidden");
 		showClientes(valorSelect);
-		showVentas();
-		editarStock();
-	} 
+		//showVentas();
+		//editarStock();
+	}
 };
 
-const showClientes=(idVendedor)=>{
-	
-	/* cliente pose todos los clientes del vendedor seleccionado */
-	/* cliente.map((elemento)=>{
-
-	}) */
-	viewClientes.innerHTML=`
+const showClientes = (idVendedor) => {
+	/* creacion de cuerpo de tabla para muestra de los clientes */
+	viewClientes.innerHTML = `
 	<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 		<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 			<thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
@@ -128,30 +124,36 @@ const showClientes=(idVendedor)=>{
 			</tbody>
 		</table>
 	</div>`
-	let body=document.getElementById("clientesBody");
-	clientes.map(cliente=>{
-		
-		let elemento=(`
-				<tr id="cliente${cliente.id}" class="border-b border-gray-200 dark:border-gray-700">
-					<th scope="row"
-						class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-						${cliente.nombre}
-					</th>
-					<td class="px-6 py-4">
-						${cliente.compra.length}
-					</td>
-					<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
-						$${100.00}
-					</td>
-					<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
-						<div  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Modificar</div>
-						<div  class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Eliminar</div>
-
-					</td>
-				</tr>`
-				);
-			body.insertAdjacentHTML("beforeend",elemento);
-	})
+	let body = document.getElementById("clientesBody");
+	/* creacion de cada nodo de cliente */
+	clientes.map(cliente => {
+		let nodo = (`
+		<tr id="cliente${cliente.id}" class="border-b border-gray-200 dark:border-gray-700">
+			<th scope="row"
+				class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+				${cliente.nombre}
+			</th>
+			<td class="px-6 py-4">
+			 ${cliente.compra.length}
+			</td>
+			<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+				$${100.00}
+			</td>
+			<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+				<div class="flex justify-between p-2 ">
+					<div id="mod${cliente.id}"
+						class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+						modificar</div>
+					<div id="del${cliente.id}"
+						class="hover:text-gray-500 hover:bg-white bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 text-gray-100 focus:z-10 ">
+						Eliminar
+					</div>
+				</div>
+			</td>
+		</tr>`
+		);
+		body.insertAdjacentHTML("beforeend", nodo);
+	});
 }
 
 const agregarVendedor = () => {
@@ -256,6 +258,7 @@ const showSelects = () => {
 		modalSelect.appendChild(nuevaOpcion);
 	})
 }
+
 loginModal.addEventListener("click", e => {
 	switch (e.target.id.toLowerCase()) {
 		case "usuario":
@@ -268,11 +271,7 @@ loginModal.addEventListener("click", e => {
 			login();
 			break;
 		case "cancelar":
-			let option = prompt(`esta por salir \n S-. Si \n N-. No`).toLowerCase();
-			console.log(option)
-			if (option == "s") {
-				loginModal.classList.toggle("hidden")
-			}
+			loginModal.classList.toggle("hidden")
 			break;
 		case "loginmodal":
 			loginModal.classList.toggle('hidden');
@@ -284,7 +283,7 @@ loginModal.addEventListener("keydown", e => {
 	if (e.key == "Enter") {
 		e.preventDefault();
 		login();
-	}else e.key=="Escape" && loginModal.classList.toggle("hidden")
+	} else e.key == "Escape" && loginModal.classList.toggle("hidden")
 })
 
 btnMenu.addEventListener("click", () => {
