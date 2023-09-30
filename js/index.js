@@ -99,6 +99,7 @@ const login = () => {
 	}
 };
 
+
 const showClientes = (idVendedor) => {
 	/* creacion de cuerpo de tabla para muestra de los clientes */
 	viewClientes.innerHTML = `
@@ -128,7 +129,7 @@ const showClientes = (idVendedor) => {
 	/* creacion de cada nodo de cliente */
 	clientes.map(cliente => {
 		let nodo = (`
-		<tr id="cliente${cliente.id}" class="border-b border-gray-200 dark:border-gray-700">
+		<tr id="cliente${cliente.dni}" class="border-b border-gray-200 dark:border-gray-700">
 			<th scope="row"
 				class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
 				${cliente.nombre}
@@ -141,10 +142,10 @@ const showClientes = (idVendedor) => {
 			</td>
 			<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
 				<div class="flex justify-between p-2 ">
-					<div id="mod${cliente.id}"
+					<div id="mod${cliente.dni}"
 						class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
 						modificar</div>
-					<div id="del${cliente.id}"
+					<div id="del${cliente.dni}"
 						class="hover:text-gray-500 hover:bg-white bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 text-gray-100 focus:z-10 ">
 						Eliminar
 					</div>
@@ -153,6 +154,9 @@ const showClientes = (idVendedor) => {
 		</tr>`
 		);
 		body.insertAdjacentHTML("beforeend", nodo);
+	});
+	body.addEventListener("click", event=>{
+		console.log(event.target);
 	});
 }
 
