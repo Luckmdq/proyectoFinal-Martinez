@@ -1,7 +1,7 @@
 const iva = 0.21;
 
 /* CAPTURA DE DISPARADORES DE EVENTOS */
-const btnLogin = document.getElementById("btnLogin")
+const btnLogin = document.getElementById("ctaLogin")
 const loginModal = document.getElementById("loginModal")
 const closeModal = document.getElementById("closeModal")
 const modalSelect = document.getElementById("usuario")
@@ -10,6 +10,7 @@ const menu = document.getElementById("navbar");
 const formularioIngreso = document.getElementById("formLogin")
 const ctaCarrito = document.getElementById("btnCarrito")
 const viewClientes = document.getElementById("clientes")
+const modalMod=document.getElementById("modModal")
 
 
 /* TIPOS DE DATOS  */
@@ -31,13 +32,15 @@ const pedidos = [
 
 const clientes = [
 	{
+		id:3,
 		dni: "35764127",
 		nombre: "pedro",
-		direcion: "",
+		direcion: "456",
 		compra: [21],
 		vendedor: 1,
 	},
 	{
+		id:44,
 		dni: "33273700",
 		nombre: "jesi",
 		compra: [1],
@@ -82,8 +85,7 @@ const abertura = [{
 
 
 
-
-/* login de usuario */
+/* Funciones */
 const login = () => {
 	let opcion = formularioIngreso.children[1];
 	let valorSelect = parseInt(opcion.options[opcion.selectedIndex].value);
@@ -98,6 +100,24 @@ const login = () => {
 		//editarStock();
 	}
 };
+
+const modificarCliente=(cliente)=>{
+	modalMod.classList.toggle("hidden");
+	let direccion=document.getElementById("direccion")
+	let email=document.getElementById("email")
+	let dni=document.getElementById("dni")
+	let nombre=document.getElementById("nombre")
+	let tituloMod=document.getElementById("tituloMod")
+	tituloMod.textContent=`${cliente.id}`
+	direccion.value=cliente.direcion;
+	email.value=cliente.email;
+	dni.value=cliente.dni;
+	nombre.value=cliente.nombre;
+};
+
+const eliminarCliente=(id)=>{
+	//elimina el cliente
+}
 
 
 const showClientes = (idVendedor) => {
@@ -142,9 +162,9 @@ const showClientes = (idVendedor) => {
 			</td>
 			<td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
 				<div class="flex justify-between p-2 ">
-					<div id="mod${cliente.dni}"
-						class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-						modificar</div>
+					<div id="mod${cliente.dni}"	class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+						modificar
+					</div>
 					<div id="del${cliente.dni}"
 						class="hover:text-gray-500 hover:bg-white bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 text-gray-100 focus:z-10 ">
 						Eliminar
@@ -157,8 +177,8 @@ const showClientes = (idVendedor) => {
 	});
 	body.addEventListener("click", event=>{
 		let id=event.target.id
-		id.includes("mod") && console.log(id.replaceAll("mod",""))
-		id.includes("del") && console.log(id.replaceAll("del",""))
+		id.includes("mod") && modificarCliente(clientes.find(e=>(e.dni==id.replaceAll("mod",""))))
+		id.includes("del") && eliminarCliente(id.replaceAll("del",""))
 	});
 }
 
@@ -212,8 +232,7 @@ const venta = () => {
 const cancelarVenta = () => {
 
 }
-/* 
-modificarVenta() */
+/* modificarVenta() */
 
 /* ingreso de cantidades al stock */
 const ingreso = (condicion, cantidad) => {
@@ -253,9 +272,8 @@ const total = () => {
 }
 
 
-btnLogin.addEventListener("click", (ev) => {
-	loginModal.classList.toggle(`hidden`);
-})
+/* Manejo de eventos */
+
 const showSelects = () => {
 	vendedor.map(e => {
 		nuevaOpcion = document.createElement(`option`);
@@ -264,6 +282,27 @@ const showSelects = () => {
 		modalSelect.appendChild(nuevaOpcion);
 	})
 }
+
+const confirmarMod=()=>{
+	let id=parseInt(document.getElementById("tituloMod").textContent)
+	let email=document.getElementById("email")
+	let dni=document.getElementById("dni")
+	let nombre=document.getElementById("nombre")
+	let cliente=clientes.find(e=>e.id==id)
+	cliente.direcion=direccion.value;
+	cliente.email=email.value;
+	cliente.dni=dni.value;
+	cliente.nombre=nombre.value;
+}
+
+/*  */
+
+btnLogin.addEventListener("click", (ev) => {
+	loginModal.classList.toggle(`hidden`);
+})
+btnMenu.addEventListener("click", () => {
+	menu.classList.toggle("hidden")
+})
 
 loginModal.addEventListener("click", e => {
 	switch (e.target.id.toLowerCase()) {
@@ -292,13 +331,22 @@ loginModal.addEventListener("keydown", e => {
 	} else e.key == "Escape" && loginModal.classList.toggle("hidden")
 })
 
-btnMenu.addEventListener("click", () => {
-	menu.classList.toggle("hidden")
-})
 
-/* main */
-/* ingreso valido *//* 
-let usuario = ""
-usuario = prompt(`desea entrar como vendedor? \n Y/N`).toUpperCase();
-console.log(usuario === "Y" && ingresoUsuario() )  & menuUsuario();  */
+modalMod.addEventListener("click", e => {
+	let press=e.target.id.toLowerCase();
+	console.log(press);
+	switch (press) {
+		case "close":
+			modalMod.classList.toggle("hidden")
+			break;
+		case "aceptar":
+			confirmarMod();
+			showClientes();
+			modalMod.classList.toggle("hidden");
+			break;
+		case "cancelar":
+			modalMod.classList.toggle("hidden")
+			break;
+	}			
+})
 
