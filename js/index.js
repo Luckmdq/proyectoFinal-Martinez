@@ -1,89 +1,3 @@
-const iva = 0.21;
-
-/* CAPTURA DE DISPARADORES DE EVENTOS */
-const btnLogin = document.getElementById("ctaLogin")
-const loginModal = document.getElementById("loginModal")
-const closeModal = document.getElementById("closeModal")
-const modalSelect = document.getElementById("usuario")
-const btnMenu = document.getElementById("ctaMenu")
-const menu = document.getElementById("navbar");
-const formularioIngreso = document.getElementById("formLogin")
-const ctaCarrito = document.getElementById("btnCarrito")
-const viewClientes = document.getElementById("clientes")
-const modalMod=document.getElementById("modModal")
-
-
-/* TIPOS DE DATOS  */
-const pedidos = [
-	{
-		id: 21,
-		pedido: [
-			{ abertura: 1, cantidad: 2 },
-			{ abertura: 2, cantidad: 3 },
-		]
-	},
-	{
-		id: 1,
-		pedido: [
-			{ abertura: 2, cantidad: 1 },
-		]
-	}
-]
-
-const clientes = [
-	{
-		id:3,
-		dni: "35764127",
-		nombre: "pedro",
-		direcion: "456",
-		compra: [21],
-		vendedor: 1,
-	},
-	{
-		id:44,
-		dni: "33273700",
-		nombre: "jesi",
-		compra: [1],
-		vendedor: 1,
-	}
-]
-
-const vendedor = [
-	{
-		id: 1,
-		nombre: "pedro",
-		contraseña: "123",
-		clientes: ["35764127", "33273700"],
-	},
-	{
-		id: 2,
-		nombre: "jesi",
-		contraseña: "123",
-		clientes: ["35764127", "33273700"],
-	}
-]
-
-const abertura = [{
-	id: 1,
-	nombre: "corrediza",
-	cantidad: 0,
-	valor: 125,
-},
-{
-	id: 2,
-	nombre: "abrir",
-	cantidad: 0,
-	valor: 123,
-},
-{
-	id: 3,
-	nombre: "puerta",
-	cantidad: 0,
-	valor: 122,
-}
-];
-
-
 
 /* Funciones */
 const login = () => {
@@ -115,8 +29,9 @@ const modificarCliente=(cliente)=>{
 	nombre.value=cliente.nombre;
 };
 
-const eliminarCliente=(id)=>{
-	//elimina el cliente
+const eliminarCliente=(cliente)=>{
+	clientes=clientes.splice(clientes.indexOf(cliente),1);
+	showClientes();
 }
 
 
@@ -178,7 +93,7 @@ const showClientes = (idVendedor) => {
 	body.addEventListener("click", event=>{
 		let id=event.target.id
 		id.includes("mod") && modificarCliente(clientes.find(e=>(e.dni==id.replaceAll("mod",""))))
-		id.includes("del") && eliminarCliente(id.replaceAll("del",""))
+		id.includes("del") && eliminarCliente(clientes.find(e=>(e.dni==id.replaceAll("del",""))))
 	});
 }
 
@@ -295,58 +210,4 @@ const confirmarMod=()=>{
 	cliente.nombre=nombre.value;
 }
 
-/*  */
-
-btnLogin.addEventListener("click", (ev) => {
-	loginModal.classList.toggle(`hidden`);
-})
-btnMenu.addEventListener("click", () => {
-	menu.classList.toggle("hidden")
-})
-
-loginModal.addEventListener("click", e => {
-	switch (e.target.id.toLowerCase()) {
-		case "usuario":
-			if (modalSelect.children.length == 1) { showSelects() };
-			break;
-		case "closemodal":
-			loginModal.classList.toggle('hidden');
-			break;
-		case "ingresar":
-			login();
-			break;
-		case "cancelar":
-			loginModal.classList.toggle("hidden")
-			break;
-		case "loginmodal":
-			loginModal.classList.toggle('hidden');
-			break;
-	}
-})
-
-loginModal.addEventListener("keydown", e => {
-	if (e.key == "Enter") {
-		e.preventDefault();
-		login();
-	} else e.key == "Escape" && loginModal.classList.toggle("hidden")
-})
-
-
-modalMod.addEventListener("click", e => {
-	let press=e.target.id.toLowerCase();
-	console.log(press);
-	switch (press) {
-		case "close":
-			modalMod.classList.toggle("hidden")
-			break;
-		case "aceptar":
-			confirmarMod();
-			showClientes();
-			modalMod.classList.toggle("hidden");
-			break;
-		case "cancelar":
-			modalMod.classList.toggle("hidden")
-			break;
-	}			
-})
 
