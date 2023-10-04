@@ -69,3 +69,11 @@ const abertura = [{
 	valor: 122,
 }
 ];
+almacenamiento.clear()
+almacenamiento.setItem("stock",JSON.stringify(abertura))
+almacenamiento.setItem("administradores",JSON.stringify(vendedor))
+almacenamiento.setItem("usuarios",JSON.stringify(clientes))
+almacenamiento.setItem("tareas",JSON.stringify(pedidos))
+
+let variable=almacenamiento.getItem("stock")
+console.log(JSON.parse(variable));
