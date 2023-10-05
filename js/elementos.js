@@ -10,3 +10,4 @@ const ctaCarrito = document.getElementById("btnCarrito")
 const viewClientes = document.getElementById("clientes")
 const modalMod=document.getElementById("modModal")
 const almacenamiento= window.localStorage;
+const pickerBody=document.getElementById("pickerBody")

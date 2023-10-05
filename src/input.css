@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#ppf{
+    background-image: url("../img/svg/plus.svg");
+    
+}
+#mpf{
+    background-image: url("../img/svg/min.svg");
+}

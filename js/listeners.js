@@ -14,10 +14,10 @@ loginModal.addEventListener("click", e => {
 		case "closemodal":
 			loginModal.classList.toggle('hidden');
 			break;
-		case "ingresar":
+		case "ingresarlogin":
 			login();
 			break;
-		case "cancelar":
+		case "cancelarlogin":
 			loginModal.classList.toggle("hidden")
 			break;
 		case "loginmodal":
@@ -52,4 +52,8 @@ modalMod.addEventListener("click", e => {
 			modalMod.classList.toggle("hidden")
 			break;
 	}			
+})
+
+picker.addEventListener("click", e=>{
+    console.log(e.target.id)
 })

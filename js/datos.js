@@ -64,7 +64,7 @@ const abertura = [{
 },
 {
 	id: 3,
-	nombre: "puerta",
+	nombre: "PañoFijo",
 	cantidad: 0,
 	valor: 122,
 }
@@ -75,5 +75,5 @@ almacenamiento.setItem("administradores",JSON.stringify(vendedor))
 almacenamiento.setItem("usuarios",JSON.stringify(clientes))
 almacenamiento.setItem("tareas",JSON.stringify(pedidos))
 
-let variable=almacenamiento.getItem("stock")
-console.log(JSON.parse(variable));
+const stock=JSON.parse(almacenamiento.getItem("stock"))
+console.log(stock)
