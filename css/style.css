@@ -685,10 +685,6 @@ video {
   height: 2rem;
 }
 
-.h-\[10\%\] {
-  height: 10%;
-}
-
 .h-\[calc\(100\%-1rem\)\] {
   height: calc(100% - 1rem);
 }
@@ -711,10 +707,6 @@ video {
 
 .w-3 {
   width: 0.75rem;
-}
-
-.w-32 {
-  width: 8rem;
 }
 
 .w-4 {
@@ -1062,11 +1054,11 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-#ppf{
+.mas{
   background-image: url("../img/svg/plus.svg");
 }
 
-#mpf{
+.menos{
   background-image: url("../img/svg/min.svg");
 }
 

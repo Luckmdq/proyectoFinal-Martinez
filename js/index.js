@@ -1,5 +1,5 @@
+showpicker();
 
-/* Funciones */
 const login = () => {
 	let opcion = formularioIngreso.children[1];
 	let valorSelect = parseInt(opcion.options[opcion.selectedIndex].value);
@@ -8,6 +8,7 @@ const login = () => {
 	loginModal.classList.toggle('hidden');
 	/* al ingresar tendria que ver los clientes y los pedidos, al no ingresar tendria que mostrar un alert por la contraseña o algo asi */
 	if (usuario.contraseña == pass) {
+		loginFF=true;
 		//ctaCarrito.classList.toggle("hidden");
 		showClientes(valorSelect);
 		//showVentas();
@@ -34,8 +35,6 @@ const eliminarCliente=(cliente)=>{
 	showClientes();
 }
 
-
-
 const agregarVendedor = () => {
 	const newVendedor = {
 		id: -1,
@@ -49,7 +48,6 @@ const agregarVendedor = () => {
 	vendedor.push(newVendedor);
 	console.table(vendedor);
 }
-
 
 const agregarPedido = (dni) => {
 	let cliente = clientes.find((elemento) => elemento.dni === dni)
@@ -85,8 +83,7 @@ const venta = () => {
 const cancelarVenta = () => {
 
 }
-/* modificarVenta() */
-/* ingreso de cantidades al stock */
+
 const ingreso = (condicion, cantidad) => {
 	switch (condicion) {
 		case "A":
@@ -100,7 +97,7 @@ const ingreso = (condicion, cantidad) => {
 			break;
 	};
 }
-/* menu de ingreso  de stock*/
+
 const entrada = () => {
 	let dato = "";
 	let cantidad = 0;
@@ -113,6 +110,7 @@ const entrada = () => {
 		}
 	} while (dato !== "S");
 }
+
 const total = () => {
 	let acumulado = 0;
 	for (let i = 0; i < abertura.length; i++) {
@@ -120,9 +118,6 @@ const total = () => {
 	}
 	return acumulado * (iva + 1);
 }
-
-
-/* Manejo de eventos */
 
 const showSelects = () => {
 	vendedor.map(e => {

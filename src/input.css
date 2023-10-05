@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-#ppf{
+.mas{
     background-image: url("../img/svg/plus.svg");
     
 }
-#mpf{
+.menos{
     background-image: url("../img/svg/min.svg");
 }

@@ -1,5 +1,7 @@
 const iva = 0.21;
 
+let loginFF=false
+
 /* TIPOS DE DATOS  */
 const pedidos = [
 	{
