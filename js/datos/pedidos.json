@@ -1,0 +1,24 @@
+[
+    {
+        "id": 21,
+        "pedido": [
+            {
+                "abertura": 1,
+                "cantidad": 2
+            },
+            {
+                "abertura": 2,
+                "cantidad": 3
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "pedido": [
+            {
+                "abertura": 2,
+                "cantidad": 1
+            }
+        ]
+    }
+]

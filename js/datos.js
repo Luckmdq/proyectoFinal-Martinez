@@ -1,81 +1,64 @@
-const iva = 0.21;
-
-let loginFF=false
-
-/* TIPOS DE DATOS  */
-const pedidos = [
-	{
-		id: 21,
-		pedido: [
-			{ abertura: 1, cantidad: 2 },
-			{ abertura: 2, cantidad: 3 },
-		]
-	},
-	{
-		id: 1,
-		pedido: [
-			{ abertura: 2, cantidad: 1 },
-		]
+class Abertura{
+	constructor(id, nombre,cantidad,valor){
+		this.id=id,
+		this.nombre=nombre,
+		this.cantidad=cantidad,
+		this.valor=valor
 	}
-]
-
-let clientes = [
-	{
-		id:3,
-		dni: "35764127",
-		nombre: "pedro",
-		direcion: "456",
-		compra: [21],
-		vendedor: 1,
-	},
-	{
-		id:44,
-		dni: "33273700",
-		nombre: "jesi",
-		compra: [1],
-		vendedor: 1,
-	}
-]
-
-const vendedor = [
-	{
-		id: 1,
-		nombre: "pedro",
-		contraseña: "123",
-		clientes: ["35764127", "33273700"],
-	},
-	{
-		id: 2,
-		nombre: "jesi",
-		contraseña: "123",
-		clientes: ["35764127", "33273700"],
-	}
-]
-
-const abertura = [{
-	id: 1,
-	nombre: "corrediza",
-	cantidad: 0,
-	valor: 125,
-},
-{
-	id: 2,
-	nombre: "abrir",
-	cantidad: 0,
-	valor: 123,
-},
-{
-	id: 3,
-	nombre: "PañoFijo",
-	cantidad: 0,
-	valor: 122,
+	//metodos propios de la clase
 }
-];
-almacenamiento.clear()
-almacenamiento.setItem("stock",JSON.stringify(abertura))
-almacenamiento.setItem("administradores",JSON.stringify(vendedor))
-almacenamiento.setItem("usuarios",JSON.stringify(clientes))
-almacenamiento.setItem("tareas",JSON.stringify(pedidos))
+class Clientes{
+	constructor(id, dni, nombre, direcion, compra, vendedor){
+		this.id=id,
+		this.dni=dni,
+		this.nombre=nombre,
+		this.direcion=direcion,
+		this.compra=compra,
+		this.vendedor=vendedor
+	}
+	//metodos propios de la clase
+}
+class Pedidos{
+	constructor(id, pedidos){
+		this.id=id,
+		this.pedidos=pedidos
+	}
+	//metodos propios de la clase
+}
+class Vendedor{
+	constructor(id, nombre,contraseña,clientes){
+		this.id=id,
+		this.nombre=nombre,
+		this.contraseña=contraseña,
+		this.clientes=clientes
+	}
+	//metodos propios de la clase
+}
+const iva = 0.21;
+let loginFF=false;
 
-const stock=JSON.parse(almacenamiento.getItem("stock"))
-console.log(stock)
+
+
+/* instansiacion de cada dato */
+/* 
+almacenamiento.clear() 
+almacenamiento.setItem("abertura",JSON.stringify(abertura))
+almacenamiento.setItem("vendedor",JSON.stringify(vendedor))
+almacenamiento.setItem("clientes",JSON.stringify(clientes))
+almacenamiento.setItem("pedidos",JSON.stringify(pedidos)) 
+const abertura=JSON.parse(almacenamiento.getItem("abertura"))
+const vendedor=JSON.parse(almacenamiento.getItem("vendedor"))
+const clientes=JSON.parse(almacenamiento.getItem("clientes"))
+const pedidos=JSON.parse(almacenamiento.getItem("pedidos")) */
+
+
+//carga de cada .json y se instancia para guardarlo en el local storage desde el html
+const cargaAberturas = async () =>{
+    const resp = await fetch("./js/datos/aberturas.json")
+    const aberturas = await resp.json()
+	aberturas.map(dato=>{
+		let newAbertura= new abertura (dato.id, dato.nombre, dato.cantidad, dato.valor)
+		stock.push(newAbertura);
+	})
+    almacenamiento.setItem("estanteria", JSON.stringify(estanteria));
+}

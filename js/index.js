@@ -11,7 +11,8 @@ const login = () => {
 		loginFF=true;
 		//ctaCarrito.classList.toggle("hidden");
 		showClientes(valorSelect);
-		//showVentas();
+		btnLogin.classList.toggle("hidden");
+		showpicker();
 		//editarStock();
 	}
 };
@@ -28,11 +29,19 @@ const modificarCliente=(cliente)=>{
 	email.value=cliente.email;
 	dni.value=cliente.dni;
 	nombre.value=cliente.nombre;
+	almacenarClientes();
 };
 
-const eliminarCliente=(cliente)=>{
-	clientes=clientes.splice(clientes.indexOf(cliente),1);
+const almacenarClientes=()=>{
+	console.log(clientes);
+	almacenamiento.removeItem("clientes")
+	almacenamiento.setItem("clientes",JSON.stringify(clientes));
 	showClientes();
+}
+
+const eliminarCliente=(cliente)=>{
+	clientes.splice(clientes.indexOf(cliente),1);
+	almacenarClientes();
 }
 
 const agregarVendedor = () => {

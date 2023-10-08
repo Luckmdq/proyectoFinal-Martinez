@@ -1,0 +1,17 @@
+[
+	{
+		"id":3,
+		"dni": "35764127",
+		"nombre": "pedro",
+		"direcion": "456",
+		"compra": [21],
+		"vendedor": 1
+	},
+	{
+		"id":44,
+		"dni": "33273700",
+		"nombre": "jesi",
+		"compra": [1],
+		"vendedor": 1
+	}
+]

@@ -1,0 +1,14 @@
+[
+	{
+		"id": 1,
+		"nombre": "pedro",
+		"contraseña": "123",
+		"clientes": ["35764127", "33273700"]
+	},
+	{
+		"id": 2,
+		"nombre": "jesi",
+		"contraseña": "123",
+		"clientes": ["35764127", "33273700"]
+	}
+]

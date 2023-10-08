@@ -1,0 +1,20 @@
+[
+    {
+	"id": 1,
+	"nombre": "corrediza",
+	"cantidad": 0,
+	"valor": 125
+    },
+    {
+	"id": 2,
+	"nombre": "abrir",
+	"cantidad": 0,
+	"valor": 123
+    },
+    {
+	"id": 3,
+	"nombre": "PañoFijo",
+	"cantidad": 0,
+	"valor": 122
+    }
+]
