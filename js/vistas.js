@@ -27,7 +27,7 @@ const showClientes = (idVendedor) => {
 	</div>`
 	let body = document.getElementById("clientesBody");
 	/* creacion de cada nodo de cliente */
-	clientes.map(cliente => {
+	cartera.map(cliente => {
 		let nodo = (`
 		<tr id="cliente${cliente.dni}" class="border-b border-gray-200 dark:border-gray-700">
 			<th scope="row"
@@ -65,8 +65,8 @@ const showClientes = (idVendedor) => {
 
 const showpicker = () => {
 	/* creacion de cada nodo */
-	pickerBody.innerHTML="";
-	abertura.map(elemento => {
+	picker.innerHTML="";
+	stock.map(elemento => {
 		let nodo = (`
 		<tr
 		class=" h[1%] bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -97,6 +97,6 @@ const showpicker = () => {
 			
 		</td>
 	</tr>`)
-	pickerBody.insertAdjacentHTML("beforeend",nodo)
+	picker.insertAdjacentHTML("beforeend",nodo)
 	})
 }

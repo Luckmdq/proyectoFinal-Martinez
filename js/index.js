@@ -1,10 +1,8 @@
-showpicker();
-
 const login = () => {
 	let opcion = formularioIngreso.children[1];
 	let valorSelect = parseInt(opcion.options[opcion.selectedIndex].value);
 	let pass = formularioIngreso.children[3].value;
-	let usuario = vendedor.find(e => e.id === valorSelect);
+	let usuario = usuarios.find(e => e.id === valorSelect);
 	loginModal.classList.toggle('hidden');
 	/* al ingresar tendria que ver los clientes y los pedidos, al no ingresar tendria que mostrar un alert por la contraseña o algo asi */
 	if (usuario.contraseña == pass) {
@@ -129,7 +127,7 @@ const total = () => {
 }
 
 const showSelects = () => {
-	vendedor.map(e => {
+	usuarios.map(e => {
 		nuevaOpcion = document.createElement(`option`);
 		nuevaOpcion.value = `${e.id}`;
 		nuevaOpcion.text = `${e.nombre}`;
@@ -146,4 +144,6 @@ const confirmarMod=()=>{
 	cliente.email=email.value;
 	cliente.dni=dni.value;
 	cliente.nombre=nombre.value;
-}
+};
+
+showpicker();
