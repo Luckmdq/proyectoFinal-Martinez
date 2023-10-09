@@ -7,7 +7,7 @@ class Abertura{
 	}
 	//metodos propios de la clase
 }
-class Clientes{
+class Cliente{
 	constructor(id, dni, nombre, direcion, compra, vendedor){
 		this.id=id,
 		this.dni=dni,
@@ -18,7 +18,7 @@ class Clientes{
 	}
 	//metodos propios de la clase
 }
-class Pedidos{
+class Pedido{
 	constructor(id, pedidos){
 		this.id=id,
 		this.pedidos=pedidos
@@ -34,31 +34,49 @@ class Vendedor{
 	}
 	//metodos propios de la clase
 }
+
+//declaracion de variables
 const iva = 0.21;
 let loginFF=false;
+let stock=[];
+let usuarios=[];
+let cartera=[];
+let obligaciones=[];
 
-
-
-/* instansiacion de cada dato */
-/* 
-almacenamiento.clear() 
-almacenamiento.setItem("abertura",JSON.stringify(abertura))
-almacenamiento.setItem("vendedor",JSON.stringify(vendedor))
-almacenamiento.setItem("clientes",JSON.stringify(clientes))
-almacenamiento.setItem("pedidos",JSON.stringify(pedidos)) 
-const abertura=JSON.parse(almacenamiento.getItem("abertura"))
-const vendedor=JSON.parse(almacenamiento.getItem("vendedor"))
-const clientes=JSON.parse(almacenamiento.getItem("clientes"))
-const pedidos=JSON.parse(almacenamiento.getItem("pedidos")) */
-
-
-//carga de cada .json y se instancia para guardarlo en el local storage desde el html
+//carga de cada .json y se instancia para guardarlo en el local storage linkeando desde el html
 const cargaAberturas = async () =>{
+    const resp = await fetch("./js/datos/aberturas.json");
+    const aberturas = await resp.json();
+	aberturas.map(dato=>{
+		let newAbertura= new Abertura (dato.id, dato.nombre, dato.cantidad, dato.valor)
+		stock.push(newAbertura);
+	})
+    almacenamiento.setItem("Stock", JSON.stringify(stock));
+}
+const cargaClientes = async () =>{
+    const resp = await fetch("./js/datos/clientes.json");
+    const clientes = await resp.json();
+	clientes.map(dato=>{
+		let newCliente= new Cliente (dato.id, dato.dni, dato.nombre, dato.direcion, dato.compra, dato.vendedor);
+		cartera.push(newCliente);
+	})
+    almacenamiento.setItem("Cartera", JSON.stringify(cartera));
+}
+const cargaPedidos = async () =>{
     const resp = await fetch("./js/datos/aberturas.json")
     const aberturas = await resp.json()
 	aberturas.map(dato=>{
-		let newAbertura= new abertura (dato.id, dato.nombre, dato.cantidad, dato.valor)
-		stock.push(newAbertura);
+		let newPedido= new Pedido (dato.id, dato.pedido);
+		obligaciones.push(newPedido);
 	})
-    almacenamiento.setItem("estanteria", JSON.stringify(estanteria));
+    almacenamiento.setItem("pedidos", JSON.stringify(obligaciones));
+}
+const cargaVendedores = async () =>{
+    const resp = await fetch("./js/datos/aberturas.json")
+    const vendedores = await resp.json()
+	vendedores.map(dato=>{
+		let newVendedor= new Vendedor (dato.id, dato.nombre, dato.contraseña, dato.clientes);
+		usuarios.push(newVendedor);
+	})
+    almacenamiento.setItem("usuarios", JSON.stringify(usuarios));
 }
