@@ -146,4 +146,4 @@ const confirmarMod=()=>{
 	cliente.nombre=nombre.value;
 };
 
-showpicker();
+//showpicker();
