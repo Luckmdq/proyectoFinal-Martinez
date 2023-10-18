@@ -33,7 +33,6 @@ loginModal.addEventListener("keydown", e => {
     } else e.key == "Escape" && loginModal.classList.toggle("hidden")
 })
 
-
 modalMod.addEventListener("click", e => {
     let press = e.target.id.toLowerCase();
     switch (press) {
@@ -54,8 +53,4 @@ modalMod.addEventListener("click", e => {
     }
 })
 
-picker.addEventListener("click", e => {
-    console.log(e.target.id)
-    
-})
 

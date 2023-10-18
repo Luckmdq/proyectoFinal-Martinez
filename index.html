@@ -108,33 +108,11 @@
 	</nav>
 	<main>
 
-		<article id="picker" class="relative w-56 mx-auto" data-carousel="static">
-			<!-- Carousel wrapper -->
-			<section id="pickerBody" class="relative overflow-hidden rounded-lg md:h-96">
-				<!-- Item 1 -->
-				<div class=" duration-700 ease-in-out w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow my-6"
-					data-carousel-item="active">
 
-					<div class="flex justify-center px-4 pt-4">
-						<div class="flex flex-col items-center pb-10">
-							<img class="w-16 h-16 mb-3 ring-2" src="./img/abrir.jpeg"
-								alt="Bonnie image" />
-							<h5 class="mb-1 text-xl font-medium select-none">Abrir</h5>
-							<span class="text-sm text-gray-500 select-none">Cantidad</span>
-							<div class="flex mt-4 space-x-3 md:mt-6">
-								<a href="#"
-									class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 z-50">Add</a>
-								<a href="#"
-									class=" z-50 inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 ">Edit</a>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</section>
+		<div id="controls-carousel" class="flex gap-2 items-center justify-center py-2" data-carousel="static">
 			<!-- Slider controls -->
-			<button id="next" type="button"
-				class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+			<button type="button"
+				class="z-30 cursor-pointer group focus:outline-none"
 				data-carousel-prev>
 				<span
 					class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
@@ -146,8 +124,12 @@
 					<span class="sr-only">Previous</span>
 				</span>
 			</button>
-			<button id="previous" type="button"
-				class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+			<!-- Carousel wrapper -->
+			<div id="pickerBody" class="flex h-auto overflow-hidden justify-center">
+
+			</div>
+			<button type="button"
+				class="z-30 cursor-pointer group focus:outline-none"
 				data-carousel-next>
 				<span
 					class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
@@ -159,7 +141,8 @@
 					<span class="sr-only">Next</span>
 				</span>
 			</button>
-		</article>
+		</div>
+
 
 		<!-- dependiendo quien ingresa se obtendria la vista(Cliente / vendedor por js pero para poder generar la vista lo hago primero estatico incluido el carrito que al ser vendedor se verian las compras a vender) todo esto mas simple con react lo se xD -->
 

@@ -1,3 +1,4 @@
+
 const login = () => {
 	let opcion = formularioIngreso.children[1];
 	let valorSelect = parseInt(opcion.options[opcion.selectedIndex].value);
@@ -146,4 +147,3 @@ const confirmarMod=()=>{
 	cliente.nombre=nombre.value;
 };
 
-//showpicker();
